@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Valerie Perini (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://www.opentravel.org/OTA/2003/05" targetNamespace="http://www.opentravel.org/OTA/2003/05" elementFormDefault="qualified" version="2.008" id="OTA2003A2011A">
+  <types>
+    <schema targetNamespace="http://htng.org/2011B" 
+      xmlns:xsd1="http://www.w3.org/2000/10/XMLSchema">
+      <element name="TradePriceRequest">
+        <complexType>
+          <all>
+            <element name="tickerSymbol" type="string" />
+          </all>
+        </complexType>
+      </element>
+      <element name="TradePrice">
+        <complexType>
+          <all>
+            <element name="price" type="float" />
+          </all>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+</xs:schema>

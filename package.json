@@ -9,6 +9,7 @@
   "author": "JulianMayorga",
   "license": "MIT",
   "dependencies": {
-    "soap": "^0.5.0"
+    "soap": "^0.5.0",
+    "strong-soap": "^1.20.0"
   }
 }

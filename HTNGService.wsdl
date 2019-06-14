@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="GRSM_ServiceExample" targetNamespace="http://example.com/grsm_service_example.wsdl" 
+  xmlns:tns="http://example.com/grsm_service_example.wsdl" 
+  xmlns:xsd1="http://htng.org/2011B" 
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:ns="http://www.opentravel.org/OTA/2003/05">
+  <types>
+    <schema targetNamespace="http://htng.org/2011B" elementFormDefault="qualified">
+      <include schemaLocation="elements.xsd"/>
+    </schema>
+  </types>
+  <!-- <types><schema targetNamespace="http://htng.org/2011B" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema"><element name="TradePriceRequest"><complexType><all><element name="tickerSymbol" type="string" /></all></complexType></element><element name="TradePrice"><complexType><all><element name="price" type="float" /></all></complexType></element></schema></types> -->
+  <message name="HTNG_CheckInNotifRQMsg">
+    <part name="body" element="xsd1:TradePriceRequest" />
+  </message>
+  <message name="HTNG_CheckInNotifRSMsg">
+    <part name="body" element="xsd1:TradePrice" />
+  </message>
+  <portType name="RoomStayEventConsumerPort">
+    <operation name="CheckedIn">
+      <input message="tns:HTNG_CheckInNotifRQMsg" />
+      <output message="tns:HTNG_CheckInNotifRSMsg" />
+    </operation>
+  </portType>
+  <binding name="RoomStayEventConsumer_SOAPBinding" type="tns:RoomStayEventConsumerPort">
+    <binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="CheckedIn">
+      <operation soapAction="http://example.com/CheckedIn" />
+      <input>
+        <body use="literal" />
+      </input>
+      <output>
+        <body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="GRSM_Example">
+    <port name="RoomStayEventConsumer" binding="tns:RoomStayEventConsumer_SOAPBinding">
+      <address location="http://localhost:8000/grsm" />
+    </port>
+  </service>
+</definitions>
