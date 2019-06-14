@@ -7,6 +7,8 @@ var server;
 
 var soap = require('strong-soap').soap;
 
+console.log('starting...');
+
 // var myService = {
 //   StockQuoteService: {
 //     StockQuotePort: {
@@ -84,7 +86,7 @@ var xml = require('fs').readFileSync('HTNGService.wsdl', 'utf8'),
 
 server.listen(8000);
 soap.listen(server, '/GRSM_ServiceExample', services, xml);
-console.log('listening');
+console.log('listening on PORT 8000');
 
 server.log = function (type, data) {
   console.log('data: ', data);

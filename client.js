@@ -22,8 +22,8 @@ var args = {
 // }, endpoint_url);
 
 
-var url = 'http://127.0.0.1:8000/GRSM_ServiceExample?wsdl';
-var endpoint_url = 'http://127.0.0.1:8000/GRSM_ServiceExample';
+var url = 'http://localhost:8000/GRSM_ServiceExample?wsdl';
+var endpoint_url = 'http://localhost:8000/GRSM_ServiceExample';
 soap.createClient(url, function(err, client) {
   console.log('err: ', err);
   console.log('client: ', client);
