@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions name="GRSM_ServiceExample" targetNamespace="http://htng.org/2011B" 
+  xmlns:tns="http://htng.org/2011B" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:ns="http://www.opentravel.org/OTA/2003/05">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://htng.org/2011B" elementFormDefault="qualified">
+      <xsd:include schemaLocation="HTNG_HotelCheckInNotifRQ.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelCheckInNotifRS.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelCheckOutNotifRQ.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelCheckOutNotifRS.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelRoomMoveNotifRQ.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelRoomMoveNotifRS.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelStayUpdateNotifRQ.xsd"/>
+      <xsd:include schemaLocation="HTNG_HotelStayUpdateNotifRS.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="HTNG_CheckOutNotifRQMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelCheckOutNotifRQ"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_CheckOutNotifRSMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelCheckOutNotifRS"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_CheckInNotifRQMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelCheckInNotifRQ"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_CheckInNotifRSMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelCheckInNotifRS"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_RoomMoveNotifRQMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelRoomMoveNotifRQ"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_RoomMoveNotifRSMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelRoomMoveNotifRS"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_StayUpdateNotifRQMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelStayUpdateNotifRQ"/>
+  </wsdl:message>
+
+  <wsdl:message name="HTNG_StayUpdateNotifRSMsg">
+    <wsdl:part name="parameters" element="tns:HTNG_HotelStayUpdateNotifRS"/>
+  </wsdl:message>
+
+  <wsdl:portType name="RoomStayEventConsumerPort">
+    <wsdl:operation name="CheckedIn">
+      <wsdl:input message="tns:HTNG_CheckInNotifRQMsg"/>
+      <wsdl:output message="tns:HTNG_CheckInNotifRSMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="CheckedOut">
+      <wsdl:input message="tns:HTNG_CheckOutNotifRQMsg"/>
+      <wsdl:output message="tns:HTNG_CheckOutNotifRSMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="RoomMoved">
+      <wsdl:input message="tns:HTNG_RoomMoveNotifRQMsg"/>
+      <wsdl:output message="tns:HTNG_RoomMoveNotifRSMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="StayUpdated">
+      <wsdl:input message="tns:HTNG_StayUpdateNotifRQMsg"/>
+      <wsdl:output message="tns:HTNG_StayUpdateNotifRSMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="RoomStayEventConsumer_SOAPBinding" type="tns:RoomStayEventConsumerPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <wsdl:operation name="CheckedIn">
+      <soap:operation soapAction="urn:#CheckedIn"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="CheckedOut">
+      <soap:operation soapAction="urn:#CheckedOut"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="RoomMoved">
+      <soap:operation soapAction="urn:#RoomMoved"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="StayUpdated">
+      <soap:operation soapAction="urn:#StayUpdated"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+
+  </wsdl:binding>
+
+  <wsdl:service name="GRSM_Example">
+    <wsdl:port name="RoomStayEventConsumer" binding="tns:RoomStayEventConsumer_SOAPBinding">
+      <soap:address location="http://localhost:8000/RoomStayEventConsumer"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
